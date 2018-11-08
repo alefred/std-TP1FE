@@ -1,0 +1,14 @@
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\bin\Release\DataAccessLayer.dll
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\bin\Release\DataAccessLayer.pdb
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\bin\Release\DataAccessLayer.xml
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\bin\Release\BusinessEntities.dll
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\bin\Release\BusinessEntities.pdb
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\bin\Release\BusinessEntities.xml
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Release\DataAccessLayer.vbprojAssemblyReference.cache
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Release\DataAccessLayer.Resources.resources
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Release\DataAccessLayer.vbproj.GenerateResource.cache
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Release\DataAccessLayer.vbproj.CoreCompileInputs.cache
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Release\DataAccessLayer.vbproj.CopyComplete
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Release\DataAccessLayer.dll
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Release\DataAccessLayer.xml
+C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Release\DataAccessLayer.pdb

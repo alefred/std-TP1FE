@@ -1,0 +1,17 @@
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\bin\Release\BusinessLogicLayer.dll
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\bin\Release\BusinessLogicLayer.pdb
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\bin\Release\BusinessLogicLayer.xml
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\bin\Release\BusinessEntities.dll
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\bin\Release\DataAccessLayer.dll
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\bin\Release\BusinessEntities.pdb
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\bin\Release\BusinessEntities.xml
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\bin\Release\DataAccessLayer.pdb
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\bin\Release\DataAccessLayer.xml
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\obj\Release\BusinessLogicLayer.vbprojAssemblyReference.cache
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\obj\Release\BusinessLogicLayer.Resources.resources
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\obj\Release\BusinessLogicLayer.vbproj.GenerateResource.cache
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\obj\Release\BusinessLogicLayer.vbproj.CoreCompileInputs.cache
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\obj\Release\BusinessLogicLayer.vbproj.CopyComplete
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\obj\Release\BusinessLogicLayer.dll
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\obj\Release\BusinessLogicLayer.xml
+C:\DEV\GitHub\TP1\TP1FE\BusinessLogicLayer\obj\Release\BusinessLogicLayer.pdb

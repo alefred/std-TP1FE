@@ -1,0 +1,744 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Pichangas</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="../css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="../js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <link href="../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+    <link href="../css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="../css/plugins/jsTree/style.min.css" rel="stylesheet">
+    <link href="../css/msc-style.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        function myModalFotoPerfil() {
+            $('#myModalFotoPerfil').modal('show');
+        }
+        function openModalOK() {
+            $('#myModalOK').modal('show');
+        }
+
+        function openModalAdvertencia() {
+            $('#myModalAdvertencia').modal('show');
+        }
+
+        function openModalError() {
+            $('#myModalError').modal('show');
+        }
+
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="md-skin">
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <div id="wrapper">
+
+            <nav class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                            <ContentTemplate>
+                                <li class="nav-header" style="padding: 20px;">
+                                    <div style="text-align: center;">
+
+                                        <asp:Image ID="imgLogoUN" runat="server" />
+                                        <br />
+                                        <br />
+                                    </div>
+                                    <div class="dropdown profile-element" style="text-align: center;">
+                                        <span>
+                                            <asp:Image ID="imgFotoPerfil" runat="server" class="img-circle" Width="150" Height="150" />
+                                        </span>
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                            <span class="clear">
+                                                <span class="block m-t-sm" style="background-color: #fff;">
+                                                    <asp:Label ID="lblNombreUsuario" runat="server" Text="" Style="color: #872286;"></asp:Label>
+                                                    <asp:Label ID="lblApePatUsuario" runat="server" Text="" Style="color: #872286;"></asp:Label>
+                                                </span>
+                                                <br />
+                                                <span class="text-muted text-xs block">
+                                                    <asp:Label ID="lblCargoUsuario" runat="server" Text=""></asp:Label>
+                                                    <b class="caret"></b></span></span></a>
+                                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                            <li><a href="#" data-toggle="modal" data-target="#myModalFotoPerfil">Cambiar foto</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#" id="linkCerrarSesion" runat="server">Cerrar sesión</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="logo-element">
+                                    </div>
+                                </li>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        <asp:Literal ID="LiteralMenu" runat="server" Text=""></asp:Literal>
+
+                    </ul>
+
+                </div>
+            </nav>
+
+            <div id="page-wrapper" class="gray-bg">
+                <div class="row border-bottom">
+                    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                        <div class="navbar-header">
+                            <a class="navbar-minimalize minimalize-styl-2 btn btn-verde" href="#" style="background-color: #C2C634;"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-top-links navbar-right">
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">ucal &nbsp;<img src="../Images/icon_redessociales.png" />
+                                </a>
+                                <ul class="dropdown-menu dropdown-messages">
+                                    <li>
+                                        <a href="http://ucal.edu.pe/" target="_blank">
+                                            <div>
+                                                <i class="fa fa-globe fa-2x"></i>&nbsp;&nbsp;web
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="https://www.facebook.com/universidad.ucal" target="_blank">
+                                            <div>
+                                                <i class="fa fa-facebook fa-2x"></i>&nbsp;&nbsp;facebook
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="https://twitter.com/ucalperu" target="_blank">
+                                            <div>
+                                                <i class="fa fa-twitter fa-2x"></i>&nbsp;&nbsp;twitter
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="https://www.youtube.com/user/ucalvideo" target="_blank">
+                                            <div>
+                                                <i class="fa fa-youtube fa-2x"></i>&nbsp;&nbsp;youtube
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="https://www.instagram.com/ucaluniversidad" target="_blank">
+                                            <div>
+                                                <i class="fa fa-instagram fa-2x"></i>&nbsp;&nbsp;instagram
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="https://plus.google.com/108082777542955693681" target="_blank">
+                                            <div>
+                                                <i class="fa fa-google-plus fa-2x"></i>&nbsp;&nbsp;Google +
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="https://www.pinterest.com/ucaluniversidad/" target="_blank">
+                                            <div>
+                                                <i class="fa fa-pinterest fa-2x"></i>&nbsp;&nbsp;pinterest
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">toulouse &nbsp;<img src="../Images/icon_redessociales.png" /></a>
+                                <ul class="dropdown-menu dropdown-messages">
+                                    <li>
+                                        <a href="http://www.tls.edu.pe/" target="_blank">
+                                            <div>
+                                                <i class="fa fa-globe fa-2x"></i>&nbsp;&nbsp;web
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="https://www.facebook.com/ToulouseLautrec.TLS" target="_blank">
+                                            <div>
+                                                <i class="fa fa-facebook fa-2x"></i>&nbsp;&nbsp;facebook
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="https://twitter.com/TLSperu" target="_blank">
+                                            <div>
+                                                <i class="fa fa-twitter fa-2x"></i>&nbsp;&nbsp;twitter
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="https://www.youtube.com/user/CanalToulouseLautrec" target="_blank">
+                                            <div>
+                                                <i class="fa fa-youtube fa-2x"></i>&nbsp;&nbsp;youtube
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="https://www.instagram.com/tlsperu" target="_blank">
+                                            <div>
+                                                <i class="fa fa-instagram fa-2x"></i>&nbsp;&nbsp;instagram
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li>
+                                <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                                    <ContentTemplate>
+                                        <a href="#" id="linkCerrarSesion2" runat="server" style="color: #666666">
+                                            <i class="fa fa-sign-out"></i>cerrar sesión
+                                        </a>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+            <!-- Flex Modal Foto Perfil -->
+            <div class="modal modal-flex fade" id="myModalFotoPerfil" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="H3">Intranet de colaboradores</h4>
+                        </div>
+                        <div class="modal-body" style="padding: 10px;">
+                            <iframe id="frameCV" runat="server" width="100%" frameborder="0" allowtransparency="true" scrolling="no" src="../frame/CambiarFoto.aspx" height="670"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Flex Modal OK -->
+        <div class="modal modal-flex fade" id="myModalOK" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true">
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <ContentTemplate>
+
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="flexModalLabel">Intranet de colaboradores</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <div style="text-align: center; margin-bottom: 7px;">
+                                    <i class="fa fa-check-circle" style="font-size: 5em; color: #1ab394;"></i>
+                                </div>
+                                <div style="text-align: center; margin-bottom: 7px;">
+                                    <asp:Label ID="lblMsgOK" runat="server" Text=""></asp:Label><br />
+                                </div>
+                                <div style="text-align: right;">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+
+        <!-- Flex Modal ADVERTENCIA -->
+        <div class="modal modal-flex fade" id="myModalAdvertencia" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="H1">Intranet de colaboradores</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <div style="text-align: center; margin-bottom: 7px;">
+                                    <i class="fa fa-exclamation-triangle text-orange" style="font-size: 5em;"></i>
+                                </div>
+                                <div style="text-align: center; margin-bottom: 7px;">
+                                    <asp:Label ID="lblMsgAdvertencia" runat="server" Text=""></asp:Label><br />
+                                </div>
+                                <div style="text-align: right;">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+
+        <!-- Flex Modal ERROR -->
+        <div class="modal modal-flex fade" id="myModalError" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true">
+            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                <ContentTemplate>
+
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="H2">Intranet de colaboradores</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <div style="text-align: center; margin-bottom: 7px;">
+                                    <i class="fa fa-times-circle text-red" style="font-size: 5em;"></i>
+                                </div>
+                                <div style="text-align: center; margin-bottom: 7px;">
+                                    <asp:Label ID="lblMsgError" runat="server" Text=""></asp:Label><br />
+                                </div>
+                                <div style="text-align: right;">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+
+    </form>
+
+    <div class="modal inmodal" id="modalAtlas" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <i class="fa fa-sliders" style="font-size: 50px;"></i>
+                    <h4 class="modal-title">Mesa de ayuda</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        La mesa de ayuda del grupo UCAL-TLS nos permite facilitar el registro, seguimiento, atención y cierre de los requerimientos e incidentes que presenten con las soluciones de Tecnología de Información y Procesos.<br />
+                        <br />
+                        <label>Enlace</label><br />
+                        <a target="_blank" href="http://atlas.ucal-tls.edu.pe:81">http://atlas.ucal-tls.edu.pe:81</a>
+                        <br />
+                        <br />
+                        <label>&Aacute;rea responsable</label><br />
+                        <a href="mailto:soporte@ucal-tls.edu.pe">soporte@ucal-tls.edu.pe</a>
+
+
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-verde" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="modalDircon" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="../Images/icon_dircon.png" />
+                    <h4 class="modal-title">directorio de contactos</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        El directorio de contactos del grupo UCAL-TLS nos permite tener los correos, anexos y número de celular de todos los colaboradores.<br />
+                        <br />
+                        <label>Enlace</label><br />
+                        <a target="_blank" href="http://online.toulouse.edu/dircon">http://online.toulouse.edu/dircon</a>
+                        <br />
+                        <br />
+                        <label>&Aacute;rea responsable</label><br />
+                        <a href="mailto:soporte@ucal-tls.edu.pe">soporte@ucal-tls.edu.pe</a>
+
+
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-verde" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="modalConSede" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="../Images/icon_consede.png" />
+                    <h4 class="modal-title">sistema de taxis entre sedes</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        El Servicio de solicitud de taxi del grupo UCAL-TLS nos permite solitar unidad(es) de transporte hacia una de nuestras sedes:<br />
+                        <ul>
+                            <li>Oficinas corporativas
+                            </li>
+                            <li>Campus TLS
+                            </li>
+                            <li>Campus UCAL
+                            </li>
+                            <li>TLS Salaverry
+                            </li>
+                        </ul>
+                        <br />
+                        <label>Enlace</label><br />
+                        <a target="_blank" href="http://online.toulouse.edu/serviciotaxi">http://online.toulouse.edu/serviciotaxi</a>
+                        <br />
+                        <br />
+                        <label>&Aacute;rea responsable</label><br />
+                        <a href="mailto:recepcion@ucal-tls.edu.pe">recepcion@ucal-tls.edu.pe</a>
+
+
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-verde" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="modalSCAT" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="../Images/img_scat.png" />
+                    <h4 class="modal-title">sistema de marcaciones</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        El sistema SCAT del grupo UCAL-TLS permite poder gestionar las vacaciones y marcas de los colaboradores<br />
+                        <br />
+                        <label>Enlace</label><br />
+                        <a target="_blank" href="http://online.toulouse.edu/SCAT_SISTEMA">http://online.toulouse.edu/SCAT_SISTEMA</a>
+                        <br />
+                        <br />
+                        <label>Responsable</label><br />
+                        <a href="mailto:krodriguez@ucal-tls.edu.pe">krodriguez@ucal-tls.edu.pe</a>
+
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-verde" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="modalWebReq" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="../Images/icon_sdr.png" />
+                    <h4 class="modal-title">sistema de requerimientos</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        La Web de requerimientos del grupo UCAL-TLS nos permite registrar los requerimientos, materiales y/o servicios, que son atendidos por el área de Logística.<br />
+                        <br />
+                        <label>Enlace</label><br />
+                        <a target="_blank" href="http://online.toulouse.edu/requerimientos">http://online.toulouse.edu/requerimientos</a>
+                        <br />
+                        <br />
+                        <label>Responsable</label><br />
+                        <a href="mailto:mcornelio@ucal-tls.edu.pe">mcornelio@ucal-tls.edu.pe</a>
+
+
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-verde" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="modalWebReqNoLog" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="../Images/icon_srnl.png" />
+                    <h4 class="modal-title">sistema de requerimientos no logísticos</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        La Web de Requerimientos No Logísticos del grupo UCAL-TLS nos permite solicitar arendires y adelantos para requerimientos que son atendidos por el área de Tesorería<br />
+                        <br />
+                        <label>Enlace</label><br />
+                        <a target="_blank" href="http://online.toulouse.edu/arrendires">http://online.toulouse.edu/arrendires</a>
+                        <br />
+                        <br />
+                        <label>Responsable</label><br />
+                        <a href="mailto:jmicha@ucal-tls.edu.pe">jmicha@ucal-tls.edu.pe</a>
+
+
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-verde" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="modalCE" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="../Images/icon_se.png" />
+                    <h4 class="modal-title">sistema educativo</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        El sistema Campus Evolution del grupo UCAL-TLS que nos permite dar soporte a la gestión académica y financienra del alumno.<br />
+                        <br />
+                        <label>Enlace</label><br />
+                        TLS : <a target="_blank" href="http://campusevolution.tls.edu.pe:8100/psp/cs90prd/?cmd=login&languageCd=ESP">http://campusevolution.tls.edu.pe:8100</a>
+                        <br />
+                        <br />
+                        UCAL : <a target="_blank" href="http://campusevolution.ucal.edu.pe:8000/psp/cs90prd/?cmd=login&languageCd=ESP">http://campusevolution.ucal.edu.pe:8000</a>
+                        <br />
+                        <br />
+                        <label>&Aacute;rea responsable</label><br />
+                        <a href="mailto:soporte-ce@ucal-tls.edu.pe">soporte-ce@ucal-tls.edu.pe</a>
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-verde" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="modalPrometeo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="../Images/icon_sdv.png" />
+                    <h4 class="modal-title">sistema de ventas</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        El sistema PROMETEO del grupo UCAL-TLS nos permite gestionar la información de los prospectos y postulantes y dar seguimiento a los mismos hasta que logren ser alumnos<br />
+                        <br />
+                        <label>Enlace</label><br />
+                        <a target="_blank" href="http://prometeo.ucal-tls.edu.pe">http://prometeo.ucal-tls.edu.pe</a>
+                        <br />
+                        <br />
+                        <label>&Aacute;rea responsable</label><br />
+                        <a href="mailto:sistemas@ucal-tls.edu.pe" target="_blank">sistemas@ucal-tls.edu.pe</a>
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-verde" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="modalColegios" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="../Images/img_sc.png" />
+                    <h4 class="modal-title">sistema de colegios</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        El sistema de colegios del grupo UCAL-TLS nos permite gestionar la información de los prospectos obtenidos desde los colegios<br />
+                        <br />
+                        <label>Enlace</label><br />
+                        <a target="_blank" href="http://online.toulouse.edu/colegios">http://online.toulouse.edu/colegios</a>
+                        <br />
+                        <br />
+                        <label>&Aacute;rea responsable</label><br />
+                        <a href="mailto:sistemas@ucal-tls.edu.pe">sistemas@ucal-tls.edu.pe</a>
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-verde" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="modalFichaDatos" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="../Images/icon_sdr.png" />
+                    <h4 class="modal-title">sistema de ficha de datos del colaborador</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        El sistema ficha de datos del colaborador nos permite gestionar la información de los colaboradores<br />
+                        <br />
+                        <label>Enlace</label><br />
+                        <a target="_blank" href="http://online.toulouse.edu/ficha_social">http://online.toulouse.edu/ficha_social</a>
+                        <br />
+                        <br />
+                        <label>Responsable</label><br />
+                        <a href="mailto:dmontero@ucal-tls.edu.pe">dmontero@ucal-tls.edu.pe</a>
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-verde" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="modalTickets" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="../Images/icon_sdr.png" />
+                    <h4 class="modal-title">sistema ATLAS</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        El sistema ATLAS nos permite solicitar y dar seguimiento a los requerimientos e incidentes al área de Sistemas y Soporte técnico<br />
+                        <br />
+                        <label>Enlace</label><br />
+                        <a target="_blank" href="http://atlas.ucal-tls.edu.pe:81">http://atlas.ucal-tls.edu.pe:81</a>
+                        <br />
+                        <br />
+                        <label>Responsable</label><br />
+                        <a href="mailto:sistemas@ucal-tls.edu.pe">sistemas@ucal-tls.edu.pe</a>
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-verde" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="../js/jquery-2.1.1.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+
+    <!-- Flot -->
+    <%--    <script src="../js/plugins/flot/jquery.flot.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.pie.js"></script>--%>
+
+    <!-- Peity -->
+    <script src="../js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="../js/demo/peity-demo.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="../js/inspinia.js"></script>
+    <script src="../js/plugins/pace/pace.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- GITTER -->
+    <script src="../js/plugins/gritter/jquery.gritter.min.js"></script>
+
+    <!-- Sparkline -->
+    <script src="../js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="../js/demo/sparkline-demo.js"></script>
+
+    <script src="../js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="../js/plugins/cropper/cropper.min.js"></script>
+    <script src="../js/plugins/jsTree/jstree.min.js"></script>
+    <script src="../js/plugins/dataTables/datatables.min.js"></script>
+    <script src="../js/plugins/iCheck/icheck.min.js"></script>
+    <script src="../js/msc-script.js"></script>
+    <!-- ChartJS-->
+    <%--<script src="../js/plugins/chartJs/Chart.min.js"></script>--%>
+
+    <!-- Toastr -->
+    <%--<script src="../js/plugins/toastr/toastr.min.js"></script>--%>
+
+
+    <script src="../js/funciones.js"></script>
+
+    <script>
+
+        $("body").addClass('fixed-sidebar');
+        $('.sidebar-collapse').slimScroll({
+            height: '100%',
+            railOpacity: 0.9
+        });
+
+        if (localStorageSupport) {
+            localStorage.setItem("fixedsidebar", 'on');
+        }
+
+
+    </script>
+</body>
+</html>
