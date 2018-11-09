@@ -113,6 +113,7 @@
             $('#myModal').modal('hide');
         }
     </script>
+    <footer>Pichanga V 1.0</footer>
 
 </body>
 
