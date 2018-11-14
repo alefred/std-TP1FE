@@ -60,20 +60,31 @@
                             <div class="form-group">
                                 <asp:TextBox ID="txtPassword" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password" required></asp:TextBox>
                             </div>
-
-                            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" class="btn btn-verde block full-width m-b" />
-
-                        </div>
+                           
+                            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" class="btn btn-verde" />
+                             <br />
+                             <hr /> 
+                          </div>
                     </div>
                 </div>
             </ContentTemplate>
-        </asp:UpdatePanel>
+            </asp:UpdatePanel>
+
+          <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+            <ContentTemplate>
+            <div class="form-group">
+                 <center>
+                             <asp:Button ID="btnNuevoRegistro" runat="server"  Text="Registrar" class="btn btn-celeste" onclic="btnNuevoRegistro_Click" formnovalidate/>
+            </div>
+                </center>
+                </ContentTemplate>
+         </asp:UpdatePanel>
+  
 
         <!-- Flex Modal -->
         <div class="modal modal-flex fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
-
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -100,6 +111,7 @@
             </asp:UpdatePanel>
         </div>
     </form>
+
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -113,7 +125,6 @@
             $('#myModal').modal('hide');
         }
     </script>
-    <footer>Pichanga V 1.0</footer>
 
 </body>
 

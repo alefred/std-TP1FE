@@ -67,4 +67,11 @@ Partial Class Login
 
         End Try
     End Sub
+
+    Protected Sub btnNuevoRegistro_Click(sender As Object, e As EventArgs) Handles btnNuevoRegistro.Click
+        Session.Contents.RemoveAll()
+        Session("id_perfil") = 99
+        Session("id_cliente") = 3
+        Response.Redirect("pages/frmRegistroUsuario.aspx")
+    End Sub
 End Class
