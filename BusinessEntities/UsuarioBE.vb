@@ -8,6 +8,11 @@
     Dim apellido_materno_ As String
     Dim nombres_ As String
     Dim email_ As String
+    'CMP
+    Dim celular_ As String
+    Dim direccion_ As String
+    Dim tipoDoc_ As String
+    Dim documento_ As String
 
     Public Property id_usuario() As Integer
         Get
@@ -80,4 +85,39 @@
         End Set
     End Property
 
+    Public Property Celular As String
+        Get
+            Return celular_
+        End Get
+        Set(value As String)
+            celular_ = value
+        End Set
+    End Property
+
+    Public Property Direccion As String
+        Get
+            Return direccion_
+        End Get
+        Set(value As String)
+            direccion_ = value
+        End Set
+    End Property
+
+    Public Property TipoDoc As String
+        Get
+            Return tipoDoc_
+        End Get
+        Set(value As String)
+            tipoDoc_ = value
+        End Set
+    End Property
+
+    Public Property Documento As String
+        Get
+            Return documento_
+        End Get
+        Set(value As String)
+            documento_ = value
+        End Set
+    End Property
 End Class
