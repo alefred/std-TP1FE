@@ -27,3 +27,12 @@ C:\DEV\GitHub\TP1\TP1FE\BusinessEntities\obj\Debug\BusinessEntities.vbproj.CoreC
 C:\DEV\GitHub\TP1\TP1FE\BusinessEntities\obj\Debug\BusinessEntities.dll
 C:\DEV\GitHub\TP1\TP1FE\BusinessEntities\obj\Debug\BusinessEntities.xml
 C:\DEV\GitHub\TP1\TP1FE\BusinessEntities\obj\Debug\BusinessEntities.pdb
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\BusinessEntities\bin\Debug\BusinessEntities.dll
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\BusinessEntities\bin\Debug\BusinessEntities.pdb
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\BusinessEntities\bin\Debug\BusinessEntities.xml
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\BusinessEntities\obj\Debug\BusinessEntities.vbprojResolveAssemblyReference.cache
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\BusinessEntities\obj\Debug\BusinessEntities.Resources.resources
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\BusinessEntities\obj\Debug\BusinessEntities.vbproj.GenerateResource.Cache
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\BusinessEntities\obj\Debug\BusinessEntities.dll
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\BusinessEntities\obj\Debug\BusinessEntities.xml
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\BusinessEntities\obj\Debug\BusinessEntities.pdb

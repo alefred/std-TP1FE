@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="DepartamentoBE.vb" />
     <Compile Include="DistritoBE.vb" />
+    <Compile Include="EDetalleEventoBE.vb" />
     <Compile Include="EventoBE.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

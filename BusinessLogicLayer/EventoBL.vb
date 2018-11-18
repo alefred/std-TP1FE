@@ -25,6 +25,12 @@ Public Class EventoBL
         Return oEventoDA.EventoObtener(id_evento)
     End Function
 
+    '----OBTENER LISTA DE CONTACTOS POR PICHANGUERO
+    Public Function EventoObtenerContactos(ByVal id_usuario As Integer, ByVal fecha As Date) As DataTable
+        Return oEventoDA.EventoObtenerContactos(id_usuario, fecha)
+    End Function
+
+
     Public Function EventoRegistrar(ByVal oEventoBE As EventoBE) As Integer
         Return oEventoDA.EventoRegistrar(oEventoBE)
     End Function

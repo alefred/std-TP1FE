@@ -4,6 +4,7 @@ Imports System.Drawing
 Imports System.Data.SqlClient
 Imports System.Data
 
+
 Partial Class administrador_MntEvento
     Inherits System.Web.UI.Page
 
@@ -44,7 +45,8 @@ Partial Class administrador_MntEvento
 #End Region
 
 #Region "EVENTOS"
-
+    Dim objBlEvento As New EventoBL
+    Dim dtListaContactos As New DataTable
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         'If Session("id_cliente") = Nothing And Session("id_perfil") = Nothing Then
         '    Response.Redirect("../Login.aspx")
@@ -72,7 +74,43 @@ Partial Class administrador_MntEvento
 
         ScriptManager.RegisterStartupScript(Me, Me.GetType(), "", "registrarDatePicker();registrarICheck();", True)
     End Sub
+    Protected Sub btnContactos_Click(sender As Object, e As EventArgs) Handles btnContactos.Click
+        If txtMntFecha.Text = "" Then
+            'MensajeOK("SELECCIONE LA FECHA DEL EVENTO! Para poder confirmar sus contactos disponibles")
+            'txtMntFecha.Text = "SELECCIONE LA FECHA DEL EVENTO! Para poder confirmar sus contactos disponibles"
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "Pop", "openModalMntEvento();", True)
 
+        Else
+            dtListaContactos = objBlEvento.EventoObtenerContactos(VS_idCliente, txtMntFecha.Text.Trim)
+            grvDetContactos.DataSource = dtListaContactos
+            grvDetContactos.DataBind()
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "Pop", "openModalMntEvento();", True)
+        End If
+        VS_idEventoSelect = 0
+
+    End Sub
+
+
+    Protected Sub grvDetDetContactos_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles grvDetContactos.RowDeleting
+        Dim resultDelete As String = ""
+        Dim dtNuevaLista As DataTable
+        Try
+
+            dtListaContactos = objBlEvento.EventoObtenerContactos(VS_idCliente, txtMntFecha.Text.Trim) 'TryCast(grvDetContactos.DataSource, DataTable)
+            dtListaContactos.Rows.RemoveAt(e.RowIndex)
+            'grvDetContactos.DeleteRow(e.RowIndex)
+            'dtListaContactos = TryCast(grvDetContactos.DataSource, DataTable)
+
+            'For Each grv In grvDetContactos.Rows
+            '    grv.DeleteRow(e.RowIndex)
+            'Next
+            grvDetContactos.DataSource = dtListaContactos
+            grvDetContactos.DataBind()
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "Pop", "openModalMntEvento();", True)
+        Catch ex As Exception
+            ' MyMessageBox.Alert(ex.Message)
+        End Try
+    End Sub
     'Protected Sub ddlUnidadNegocio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlUnidadNegocio.SelectedIndexChanged
     '    ListarEventos(ddlUnidadNegocio.SelectedValue, "")
     'End Sub
@@ -151,7 +189,7 @@ Partial Class administrador_MntEvento
     'End Sub
 
     Protected Sub btnNuevoEvento_Click(sender As Object, e As EventArgs) Handles btnNuevoEvento.Click
-        lblTituloMnt.Text = "Nuevo evento"
+        lblTituloMnt.Text = "Arma la Pichanga!"
         VS_ModoMnt = "INS"
         ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "Pop", "openModalMntEvento();", True)
         'rbUnDia.Checked = True
@@ -225,46 +263,64 @@ Partial Class administrador_MntEvento
 
     'End Sub
 
-    'Protected Sub btnMntRegistrar_Click(sender As Object, e As EventArgs) Handles btnMntRegistrar.Click
+    Protected Sub btnMntRegistrar_Click(sender As Object, e As EventArgs) Handles btnMntRegistrar.Click
 
-    '    If VS_idCliente = 0 Then
-    '        Exit Sub
-    '    End If
+        If VS_idCliente = 0 Then
+            Exit Sub
+        End If
 
-    '    Try
-    '        Dim oEventoBL As New EventoBL
-    '        Dim oEventoBE As New EventoBE
+        Try
+            Dim oEventoBL As New EventoBL
+            Dim oEventoBE As New EventoBE
+            Dim oEventoDetalleBE As New List(Of BusinessEntities.EDetalleEventoBE)
 
-    '        'oEventoBE.oUnidadNegocioBE.id_unidad_negocio = ddlMntUnidadNegocio.SelectedValue
-    '        oEventoBE.titulo = txtMntTitulo.Text.Trim
-    '        oEventoBE.descripcion = txtMntDesc.Text.Trim
+            ''oEventoBE.oUnidadNegocioBE.id_unidad_negocio = ddlMntUnidadNegocio.SelectedValue
+            'CABECERA DEL EVENTO
+            oEventoBE._id_usuario = VS_idCliente '2
+            oEventoBE._id_ubicacion = ddlMntUnidadNegocio.SelectedValue
+            oEventoBE._id_estado_evento = 1
+            oEventoBE._titulo = txtNombreEvento.Text
+            oEventoBE._descripcion = txtMntTitulo.Text
+            oEventoBE._fecha = txtMntFecha.Text.Trim
+            oEventoBE._hora_inicio = ddlMntHoraInicio.SelectedValue
+            oEventoBE._hora_fin = ddlMntHoraFin.SelectedValue
+            'oEventoBE.descripcion = txtMntDesc.Text.Trim
+            ''DETALLE DEL EVENTO
+            For i As Integer = 0 To grvDetContactos.Rows.Count - 1
+                oEventoDetalleBE.Add(New EDetalleEventoBE() With {
+                                      ._id_usuario = grvDetContactos.Rows(i).Cells(0).Text
+                                     })
+            Next
+            oEventoBE._detalleEvento = oEventoDetalleBE
+            'If rbUnDia.Checked Then
+            '    oEventoBE.fecha_evento = txtMntFecha.Text.Trim
+            '    oEventoBE.todo_dia = chkMntTodoDia.Checked
+            '    If Not chkMntTodoDia.Checked Then
+            '        oEventoBE.hora_inicio = ddlMntHoraInicio.SelectedValue
+            '        oEventoBE.hora_fin = ddlMntHoraFin.SelectedValue
+            '    End If
+            'End If
 
-    '        If rbUnDia.Checked Then
-    '            oEventoBE.fecha_evento = txtMntFecha.Text.Trim
-    '            oEventoBE.todo_dia = chkMntTodoDia.Checked
-    '            If Not chkMntTodoDia.Checked Then
-    '                oEventoBE.hora_inicio = ddlMntHoraInicio.SelectedValue
-    '                oEventoBE.hora_fin = ddlMntHoraFin.SelectedValue
-    '            End If
-    '        End If
+            'If rbRangoDias.Checked Then
+            '    oEventoBE.rango_dias = rbRangoDias.Checked
+            '    oEventoBE.fecha_ini = txtMntFechaDesde.Text
+            '    oEventoBE.fecha_fin = txtMntFechaHasta.Text
+            'End If
 
-    '        If rbRangoDias.Checked Then
-    '            oEventoBE.rango_dias = rbRangoDias.Checked
-    '            oEventoBE.fecha_ini = txtMntFechaDesde.Text
-    '            oEventoBE.fecha_fin = txtMntFechaHasta.Text
-    '        End If
+            If oEventoBL.EventoRegistrar(oEventoBE) > 0 Then
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "Pop", "closeModalMntEvento();", True)
+                MensajeOK("Evento registrado! Se registraron sus pichangueros!")
+                limpiarFormulario()
+                VS_idEventoSelect = 0
+                'ddlUnidadNegocio_SelectedIndexChanged(Nothing, EventArgs.Empty)
+            End If
+        Catch ex As Exception
+            MensajeError("Evento no registrado! Ocurrio un error al registrar el evento")
+            limpiarFormulario()
+            VS_idEventoSelect = 0
+        End Try
 
-    '        If oEventoBL.EventoRegistrar(oEventoBE) > 0 Then
-    '            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "Pop", "closeModalMntEvento();", True)
-    '            MensajeOK("Evento registrado")
-    '            VS_idEventoSelect = 0
-    '            ddlUnidadNegocio_SelectedIndexChanged(Nothing, EventArgs.Empty)
-    '        End If
-    '    Catch ex As Exception
-
-    '    End Try
-
-    'End Sub
+    End Sub
 
 #End Region
 
@@ -273,19 +329,20 @@ Partial Class administrador_MntEvento
     Sub limpiarFormulario()
         ddlMntUnidadNegocio.SelectedValue = 0
         txtMntTitulo.Text = ""
-        txtMntDesc.Text = ""
+        'txtMntDesc.Text = ""
         txtMntFecha.Text = ""
         txtMntFechaDesde.Text = ""
         txtMntFechaHasta.Text = ""
-
+        txtNombreEvento.Text = ""
+        grvDetContactos.DataSource = Nothing
         ddlMntHoraInicio.SelectedValue = ""
         ddlMntHoraFin.SelectedValue = ""
 
         divDiaCompleto.Style.Add("display", "block")
         divHoraIniFin.Style.Add("display", "none")
         divDiaIniFin.Style.Add("display", "none")
-
-        rbUnDia.Checked = True
+        grvDetContactos.DataSource = Nothing
+        'rbUnDia.Checked = True
         chkMntTodoDia.Checked = True
     End Sub
 
@@ -348,18 +405,19 @@ Partial Class administrador_MntEvento
     'End Sub
 
 
-    'Public Sub MensajeOK(ByVal mensaje As String)
-    '    Master.LabelMsgOK = mensaje
-    '    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOK();", True)
-    'End Sub
+    'ACTIVAR PICHANGA'
+    Public Sub MensajeOK(ByVal mensaje As String)
+        Master.LabelMsgOK = mensaje
+        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOK();", True)
+    End Sub
     'Public Sub MensajeAdvertencia(ByVal mensaje As String)
     '    Master.LabelMsgAdvertencia = mensaje
     '    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalAdvertencia();", True)
     'End Sub
-    'Public Sub MensajeError(ByVal mensaje As String)
-    '    Master.LabelMsgError = mensaje
-    '    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalError();", True)
-    'End Sub
+    Public Sub MensajeError(ByVal mensaje As String)
+        Master.LabelMsgError = mensaje
+        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalError();", True)
+    End Sub
 
 #End Region
 

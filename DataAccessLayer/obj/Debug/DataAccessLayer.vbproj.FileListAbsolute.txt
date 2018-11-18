@@ -38,3 +38,15 @@ C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Debug\DataAccessLayer.vbproj.CopyCom
 C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Debug\DataAccessLayer.xml
 C:\DEV\GitHub\TP1\TP1FE\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\bin\Debug\DataAccessLayer.xml
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\bin\Debug\BusinessEntities.dll
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\bin\Debug\BusinessEntities.pdb
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\bin\Debug\BusinessEntities.xml
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\obj\Debug\DataAccessLayer.vbprojResolveAssemblyReference.cache
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\obj\Debug\DataAccessLayer.Resources.resources
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\obj\Debug\DataAccessLayer.vbproj.GenerateResource.Cache
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\obj\Debug\DataAccessLayer.xml
+D:\HERBERTS\Rex\UPC\TP1-UPC\TP1FE\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

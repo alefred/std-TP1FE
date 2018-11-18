@@ -50,8 +50,8 @@
             var txtMntDesc = document.getElementById('ContentPlaceHolder1_txtMntDesc');
             var txtMntFecha = document.getElementById('ContentPlaceHolder1_txtMntFecha');
 
-            var rbUnDia = document.getElementById('<%= rbUnDia.ClientID%>');
-            var rbRangoDias = document.getElementById('<%= rbRangoDias.ClientID%>');
+          <%--  var rbUnDia = document.getElementById('<%= rbUnDia.ClientID%>');
+            var rbRangoDias = document.getElementById('<%= rbRangoDias.ClientID%>');--%>
 
             var txtMntFechaDesde = document.getElementById('<%= txtMntFechaDesde.ClientID%>');
             var txtMntFechaHasta = document.getElementById('<%= txtMntFechaHasta.ClientID%>');
@@ -143,10 +143,11 @@
                                                 </asp:DropDownList>
                                             </div>
                                             <div class="col-lg-6" style="text-align: right;">
-                                                <asp:Button ID="btnNuevoEvento" class='btn btn-primary btn-md' runat="server" Text="Nuevo Evento" />
+                                                <asp:Button ID="btnNuevoEvento" class='btn btn-primary btn-md' runat="server" Text="NUEVO EVENTO" />
                                             </div>
                                         </div>
 
+                                        
                                         <br />
                                         <div class="table-responsive">
                                             <asp:GridView ID="gvEventos" runat="server" Class="table table-bordered table-hover"
@@ -196,7 +197,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="H3">Intranet de colaboradores</h4>
+                                <h4 class="modal-title" id="H3">Servicio para pichangueros</h4>
                             </div>
                             <div class="modal-body">
                                 <div style="text-align: center; margin-bottom: 7px;">
@@ -214,7 +215,7 @@
                         </div>
                     </div>
                 </div>
-
+                <%----------------------------POPUP PARA MANTENIMIENTO DE EVENTOS---------------------------------%>
                 <div class="modal inmodal" id="myModalMntEvento" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content animated bounceInRight">
@@ -230,26 +231,27 @@
                                         <asp:Label ID="lblMntMensajeError" runat="server" Text="Ingrese campos requeridos" ForeColor="#ff0000"></asp:Label></i>
                                 </div>
                                 <div class="form-group">
-                                    <label style="color: #ff0000;">(*)</label>&nbsp;&nbsp;<label>Unidad de negocio</label>
-                                    <asp:DropDownList ID="ddlMntUnidadNegocio" runat="server" CssClass="form-control">
+                                    <label style="color: #ff0000;">(*)</label>&nbsp;&nbsp;<label>Nombre del evento:</label>
+                                 <asp:TextBox ID="txtNombreEvento" runat="server" CssClass="form-control"></asp:TextBox>
+                                     <%--  <asp:DropDownList ID="ddlMntUnidadNegocio" runat="server" CssClass="form-control">
                                         <asp:ListItem Value="0">[Seleccione]</asp:ListItem>
                                         <asp:ListItem Value="1">TLS</asp:ListItem>
                                         <asp:ListItem Value="2">UCAL</asp:ListItem>
                                         <asp:ListItem Value="3">TLS/UCAL</asp:ListItem>
-                                    </asp:DropDownList>
+                                    </asp:DropDownList>--%>
                                 </div>
                                 <div class="form-group">
-                                    <label style="color: #ff0000;">(*)</label>&nbsp;&nbsp;<label>Título</label>
+                                    <label style="color: #ff0000;">(*)</label>&nbsp;&nbsp;<label>Mensaje de la invitación:</label>
                                     <asp:TextBox ID="txtMntTitulo" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
-                                <div class="form-group">
+                               <%-- <div class="form-group">
                                     <label>Descripción</label>
                                     <asp:TextBox ID="txtMntDesc" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="form-group">
                                     <asp:RadioButton ID="rbUnDia" runat="server" Text="1 día" Checked="true" GroupName="Dias" onclick="ShowUnDiaEvento()" />&nbsp;&nbsp;&nbsp;
                                     <asp:RadioButton ID="rbRangoDias" runat="server" Text="Rango de días" GroupName="Dias" onclick="ShowRangoDiasEvento()" />
-                                </div>
+                                </div>--%>
                                 <div class="form-group" id="divDiaCompleto" runat="server">
                                     <div class="row" id="data_1">
                                         <div class="col-xs-6">
@@ -375,12 +377,66 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div style="text-align: right;">
+                                  <label style="color: #ff0000;">(*)</label>&nbsp;&nbsp;<label>Lugar:</label>
+                                                    
+                                 <asp:DropDownList ID="ddlMntUnidadNegocio" runat="server" CssClass="form-control">
+                                        <asp:ListItem Value="0">[Seleccione]</asp:ListItem>
+                                        <asp:ListItem Value="1">CANCHITAS VIP</asp:ListItem>
+                                        <asp:ListItem Value="2">VILLA SPORT LOS PRECURSORES</asp:ListItem>
+                                        <asp:ListItem Value="3">CENTENARIO FC</asp:ListItem>
+                                        <asp:ListItem Value="4">COMPLEJO DEPORTIVO LA 9 </asp:ListItem>
+                                        <asp:ListItem Value="5">FORZA FUBTOL </asp:ListItem>
+                                        <asp:ListItem Value="6">DESPELOTE FC</asp:ListItem>
+                                    </asp:DropDownList>
+                                  <div style="text-align: right;">
                                     <i>
                                         <label>(*) : Campos requeridos</label></i>
                                 </div>
+                               <p>
+                                <asp:Button ID="btnContactos" runat="server" CssClass="btn btn-default" Text="Seleccionar mis convocados" OnClick="btnContactos_Click" Width="100%" />
+                                 </p>
+                                     <%---------------------------------------  Lista de contactos -----------------------------------%>
+                         
+                                <div class="table">
+                                      <div style="text-align: left;">
+                                    <i>
+                                        <label> CONTACTOS DISPONIBLES:</label></i>
+                                </div>
+                                <div class="ancho">
+                                    <asp:GridView ID="grvDetContactos" runat="server" Class="table table-bordered table-hover"
+                                    AutoGenerateColumns ="false" AllowPaging="True" PageSize="10" PagerStyle-CssClass="pgr"
+                                        OnRowDeleting="grvDetDetContactos_RowDeleting">
+                                        
+                                        <Columns>
+                                            <asp:BoundField DataField="ID" HeaderText="ID" />
+                                            <asp:BoundField DataField="NOMBRES" HeaderText="NOMBRES" />
+                                            <asp:BoundField DataField="AP_PATERNO" HeaderText="AP_PATERNO" />
+                                            <asp:BoundField DataField="AP_MATERNO" HeaderText="AP_MATERNO" />
+                                            <asp:BoundField DataField="EMAIL" HeaderText="EMAIL" />
+                                           <%-- <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                    <asp:CheckBox ID="chkDPVDescuento" runat="server" Checked='<%# Eval("DESCUENTO") %>' />
+                                                </ItemTemplate>
+                                                <HeaderTemplate>
+                                                    <label>DSCTO</label>&nbsp;
+                                                    <asp:CheckBox ID="chkHeader" ToolTip="Selecciona tus convocados" runat="server"
+                                                        onclick="changeAllCheckBoxes(this)"/>
+                                                </HeaderTemplate>
+                                            </asp:TemplateField>  --%>                                              
+                                             <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:ImageButton ID="btnDetalleDel" CommandName="Delete" runat="server" 
+                                                        ImageUrl="~/Images/ico-bin.png" OnClientClick="if(!confirm('¿Desea eliminar al pichanguero?')){return false;}"/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
                             </div>
+                             <%------------------------------------------------------------------------------------------%>
 
+                            </div>
+                        
                             <div class="modal-footer">
                                 <div class="row">
                                     <div class="col-xs-6">

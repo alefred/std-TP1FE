@@ -9,10 +9,25 @@
     Private hora_inicio_time_ As String
     Private hora_fin_ As String
     Private hora_fin_time_ As String
-
     Private rango_dias_ As Boolean
     Private fecha_ini_ As String
     Private fecha_fin_ As String
+
+    'PICHANGA - Entidades de cabecera de evento ---'
+    Public Property _id_evento As Integer
+    Public Property _id_usuario As Integer
+    Public Property _id_ubicacion As Integer
+    Public Property _id_estado_evento As Integer
+
+    Public Property _titulo As String
+    Public Property _descripcion As String
+    Public Property _fecha As Date
+    Public Property _hora_inicio As String
+    Public Property _hora_fin As String
+    'Propiedad de los detalles
+    Public Property _detalleEvento As List(Of EDetalleEventoBE)
+
+
 
     Public Property id_evento() As Integer
         Get

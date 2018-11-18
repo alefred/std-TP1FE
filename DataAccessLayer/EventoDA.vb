@@ -61,38 +61,95 @@ Public Class EventoDA
         End Try
 
     End Function
+    'PICHANGA ACTUALIZADA
+    Public Function EventoObtenerContactos(ByVal id_usuario As Integer, ByVal fecha As Date) As DataTable
+        'Dim cn As New SqlConnection(ConnectionString)
+        'Dim cmd As New SqlCommand("SP_LISTAR_CONTACTOS", cn)
+        'Try
+        '    With cmd
+        '        .CommandType = CommandType.StoredProcedure
+        '        .Parameters.Add("@id_usuario", SqlDbType.Int).Value = id_usuario
+        '    End With
+        '    cn.Open()
 
+        'Catch ex As Exception
+        '    Throw New Exception
+        'Finally
+        '    If cn.State = ConnectionState.Open Then
+        '        cn.Close()
+        '    End If
+        '    cmd.Dispose()
+        'End Try
+        Dim oConexion As SqlConnection
+        Dim oDataAdapter As SqlDataAdapter
+
+        Try
+            oConexion = New SqlConnection(ConnectionString)
+            oConexion.Open()
+            oDataAdapter = New SqlDataAdapter("SP_LISTAR_CONTACTOS", oConexion)
+            oDataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure
+            oDataAdapter.SelectCommand.Connection = oConexion
+            With oDataAdapter.SelectCommand.Parameters
+                .Add("@id_usuario", SqlDbType.Int).Value = id_usuario
+                .Add("@fecha", SqlDbType.DateTime).Value = fecha
+            End With
+
+            Dim dt As New DataTable
+            oDataAdapter.Fill(dt)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        Finally
+            oConexion.Close()
+        End Try
+
+    End Function
     Public Function EventoRegistrar(ByVal oEventoBE As EventoBE) As Integer
         Dim oSqlConnection As New SqlConnection(ConnectionString)
-        Dim oSqlCommand As New SqlCommand("usp_EventoRegistrar", oSqlConnection)
+        Dim oSqlCommand As New SqlCommand("SP_CREAR_EVENTO", oSqlConnection)
+        Dim oSqlCommandDetalle As New SqlCommand '("SP_CREAR_EVENTO_DETALLE", oSqlConnection)
+        Dim transaction As SqlTransaction
+        Dim strSql As String
         Dim oResult As Integer = 0
-
+        Dim idEvento As Integer
         Try
             oSqlConnection.Open()
             oSqlCommand.CommandType = CommandType.StoredProcedure
-
-            oSqlCommand.Parameters.Add("@titulo", SqlDbType.VarChar).Value = oEventoBE.titulo
-            oSqlCommand.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = oEventoBE.descripcion
-            oSqlCommand.Parameters.Add("@fecha_evento", SqlDbType.VarChar).Value = oEventoBE.fecha_evento
-            oSqlCommand.Parameters.Add("@todo_dia", SqlDbType.VarChar).Value = oEventoBE.todo_dia
-            oSqlCommand.Parameters.Add("@hora_inicio", SqlDbType.VarChar).Value = oEventoBE.hora_inicio
-            oSqlCommand.Parameters.Add("@hora_fin", SqlDbType.VarChar).Value = oEventoBE.hora_fin
-            oSqlCommand.Parameters.Add("@rango_dias", SqlDbType.VarChar).Value = oEventoBE.rango_dias
-            oSqlCommand.Parameters.Add("@fecha_ini", SqlDbType.VarChar).Value = oEventoBE.fecha_ini
-            oSqlCommand.Parameters.Add("@fecha_fin", SqlDbType.VarChar).Value = oEventoBE.fecha_fin
-
-            oResult = oSqlCommand.ExecuteNonQuery()
-
+            oSqlCommand.Parameters.Add("@id_usuario", SqlDbType.Int).Value = oEventoBE._id_usuario
+            oSqlCommand.Parameters.Add("@id_ubicacion", SqlDbType.Int).Value = oEventoBE._id_ubicacion
+            oSqlCommand.Parameters.Add("@id_estado_evento", SqlDbType.Int).Value = oEventoBE._id_estado_evento
+            oSqlCommand.Parameters.Add("@titulo", SqlDbType.VarChar).Value = oEventoBE._titulo
+            oSqlCommand.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = oEventoBE._descripcion
+            oSqlCommand.Parameters.Add("@fecha", SqlDbType.DateTime).Value = oEventoBE._fecha 'Fecha del evento'
+            oSqlCommand.Parameters.Add("@hora_inicio", SqlDbType.VarChar).Value = oEventoBE._hora_inicio
+            oSqlCommand.Parameters.Add("@hora_fin", SqlDbType.VarChar).Value = oEventoBE._hora_fin
+            ' oSqlCommand.Parameters.Add("@fecha_fin", SqlDbType.VarChar).Value = oEventoBE.fecha_fin
+            oResult = oSqlCommand.ExecuteScalar
+            '------Registro de los detalles-----------'
+            oSqlCommandDetalle.Connection = oSqlConnection
+            transaction = oSqlConnection.BeginTransaction
+            For Each item As BusinessEntities.EDetalleEventoBE In oEventoBE._detalleEvento
+                strSql = "insert into tb_EventoDetalle(id_evento,id_usuario) values(" & oResult & "," & item._id_usuario & ")"
+                oSqlCommandDetalle.CommandText = strSql
+                oSqlCommandDetalle.Transaction = transaction
+                oSqlCommandDetalle.ExecuteNonQuery()
+            Next
+            '-----------------------------------------'
+            ' oResult = oSqlCommand.ExecuteNonQuery()
+            transaction.Commit()
         Catch ex As Exception
+            transaction.Rollback()
             oResult = 0
             Throw New Exception("Se produjo error al registrar", ex)
         Finally
             If oSqlConnection.State = ConnectionState.Open Then oSqlConnection.Close()
             oSqlCommand.Dispose()
+            oSqlCommandDetalle.Dispose()
         End Try
-
         Return oResult
     End Function
+
 
     Public Function EventoActualizar(ByVal oEventoBE As EventoBE) As Integer
         Dim oSqlConnection As New SqlConnection(ConnectionString)
